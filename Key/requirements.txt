@@ -10,3 +10,4 @@ djangorestframework
 typing_extensions
 tzdata
 Django
+djangorestframework-simplejwt

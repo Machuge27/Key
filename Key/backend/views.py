@@ -30,35 +30,38 @@ class StudentRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
-    
+
     @transaction.atomic
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        
+
         # Get the student profile
         student = Student.objects.get(user=user)
-        
+
         # Return student data along with tokens
         refresh = RefreshToken.for_user(user)
-        
+
         student_serializer = StudentSerializer(student, context={'request': request})
-        
-        return Response({
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-            'user': {
-                'id': user.id,
-                'username': user.username,
-                'email': user.email,
-                'status': user.status,
-                'qr_code_url': student_serializer.data['qr_code_url'],
-                'created_at': student.created_at,
-                'is_student': user.is_student,
+
+        return Response(
+            {
+                "refresh": str(refresh),
+                "access": str(refresh.access_token),
+                "user": {
+                    "id": user.id,
+                    "username": user.username,
+                    "email": user.email,
+                    "status": student.status,
+                    "qr_code_url": student_serializer.data["qr_code_url"],
+                    "created_at": student.created_at,
+                    "is_student": user.is_student,
+                },
+                "student": student_serializer.data,
             },
-            'student': student_serializer.data
-        }, status=status.HTTP_201_CREATED)
+            status=status.HTTP_201_CREATED,
+        )
 
 
 class LogoutView(views.APIView):
