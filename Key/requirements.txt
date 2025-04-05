@@ -1,0 +1,12 @@
+qrcode
+pillow
+pyzbar
+opencv-python
+numpy
+django
+django-cors-header
+djongo
+djangorestframework
+typing_extensions
+tzdata
+Django
