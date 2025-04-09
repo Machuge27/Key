@@ -37,7 +37,7 @@ urlpatterns = [
     path('auth/user/', UserDetailView.as_view(), name='user_detail'),
     
     path('api/', include('backend.urls')),
-    # path('api/', include('generators.urls')),
+    path('todo/', include('todo.urls')),
     
 ]
 

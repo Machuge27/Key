@@ -33,16 +33,17 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'backend',
-    'generators',
-    'corsheaders',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "backend",
+    "todo",
+    "generators",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -184,4 +185,3 @@ REST_FRAMEWORK = {
 #     'TOKEN_TYPE_CLAIM': 'token_type',
 #     'JTI_CLAIM': 'jti',
 # }
-
